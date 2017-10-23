@@ -36,23 +36,21 @@ namespace DMXtable
             if (port == null || !port.IsOpen)
                 return false;
 
-            int len = 255;
+            int len = byteArray.Length;
 
             if (len > 0)
             {
-                message = new byte[255];
+                message = new byte[len+6];
                 message[0] = 0x7E;
                 message[1] = 0x06;
-                //message[2] = (byte)(len+5) & 0xFF;
-                message[2] = 0xFF;
-                message[3] = 0x00;
+                message[2] = (byte)((len+1) & 0xFF);
+                message[3] = (byte)((len >> 8) & 0xFF);
                 message[4] = 0x00;
                 byteArray.CopyTo(message, 5);
-                message[len-1] = 0xE7;
+                message[len+5] = 0xE7;
 
                 port.Write(message, 0, message.Length);
                 //Console.WriteLine(String.Join(", ", message));
-                //Console.WriteLine(message.Length + " bytes sent");
             }                
 
             return true;

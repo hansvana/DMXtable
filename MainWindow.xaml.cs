@@ -67,7 +67,6 @@ namespace DMXtable
                 int i = 0;
                 foreach (MyColor c in f.fixtureColors)
                 {
-                    Console.WriteLine(c.Hex);
                     (FIXTURE_preview.Children[i] as Ellipse).Fill = (Brush)converter.ConvertFromString(c.Hex);
                     i++;
                 }
@@ -175,6 +174,32 @@ namespace DMXtable
         {
             if (master != null)
                 master.updateMainMaster((sender as Slider).Value);
+        }
+
+        private void MAINfade_Click(object sender, RoutedEventArgs e)
+        {
+            int tag = Int32.Parse((sender as System.Windows.Controls.Button).Tag.ToString());
+            FADEspeed_text.Text = tag.ToString();
+            master.updateMainFade(tag);
+        }
+
+        private void MAINfade_Change(object sender, RoutedEventArgs e)
+        {
+            int tag = Int32.Parse((sender as System.Windows.Controls.TextBox).Text);
+            master.updateMainFade(tag);
+        }
+
+        private void FXfade_Click(object sender, RoutedEventArgs e)
+        {
+            int tag = Int32.Parse((sender as System.Windows.Controls.Button).Tag.ToString());
+            FXspeed_text.Text = tag.ToString();
+            master.updateEffectSpeed(tag);
+        }
+
+        private void FXfade_Change(object sender, RoutedEventArgs e)
+        {
+            int tag = Int32.Parse((sender as System.Windows.Controls.TextBox).Text);
+            master.updateEffectSpeed(tag);
         }
 
         private void FXmaster_Change(object sender, RoutedEventArgs e)

@@ -44,7 +44,7 @@ namespace DMXtable
                 fix.fade();
             }
 
-            effect.update(mainFade);
+            effect.update(millPerFrame);
 
             millPerFrame += ((double)(stopwatch.ElapsedMilliseconds - lastMilliseconds) - millPerFrame) * 0.03;
             lastMilliseconds = stopwatch.ElapsedMilliseconds;
@@ -81,6 +81,11 @@ namespace DMXtable
             mainMaster = val;
         }
 
+        public void updateMainFade(int val)
+        {
+            mainFade = val;
+        }
+
         public void updateEffectSelect(int tag)
         {
             effect.currentEffect = (Effect.Effects)tag;
@@ -89,6 +94,11 @@ namespace DMXtable
         public void updateEffectAppearance(bool tag)
         {
             effect.onOff = tag;
+        }
+
+        public void updateEffectSpeed(int tag)
+        {
+            effect.fadeSpeed = tag;
         }
 
         public void updateEffectColor(string val)
