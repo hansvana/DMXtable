@@ -1,0 +1,253 @@
+﻿<Window x:Class="DMXtable.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:DMXtable"
+        mc:Ignorable="d"
+        Title="DMXconsole - Hans van Arken 2017" Height="804" Width="1026">
+    <Window.Resources>
+
+        <Style TargetType="RadioButton">
+            <Setter Property="BorderThickness" Value="1"></Setter>
+            <Style.Triggers>
+                <Trigger Property="IsChecked" Value="True">
+                    <Setter Property="BorderBrush" Value="Green"></Setter>
+                    <Setter Property="Background" Value="Green"></Setter>
+                </Trigger>
+                <Trigger Property="IsChecked" Value="False">
+                    <Setter Property="BorderBrush" Value="DarkRed"></Setter>
+                    <Setter Property="Background" Value="Transparent"></Setter>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+    </Window.Resources>
+    <Grid Background="#FF191919">
+        <ComboBox x:Name="COMselect" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="120" Background="{x:Null}"/>
+        <Button x:Name="COMconnect" Content="Connect" HorizontalAlignment="Left" Margin="135,10,0,0" VerticalAlignment="Top" Width="75" Click="COMconnect_Click" Background="#FF424242" Foreground="White" Height="22"/>
+        <Label x:Name="COMerror" Content="🔌 Port not connected!" HorizontalAlignment="Left" Height="22" Margin="215,10,0,0" VerticalAlignment="Top" Width="171" Padding="5,2,5,0" Foreground="Red" Visibility="Hidden"/>
+        <TabControl Margin="12,44,12,7" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" BorderBrush="{x:Null}" Grid.Row="1" Background="#FF191919">
+            <TabItem Header="Virtual Console" BorderBrush="{x:Null}" Background="#FF181818" Foreground="#FF747474" VerticalContentAlignment="Stretch" HorizontalContentAlignment="Stretch">
+                <Grid Background="#FF191919" Margin="0,10,0,0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="60"/>
+                        <RowDefinition Height="60"/>
+                        <RowDefinition Height="60"/>
+                        <RowDefinition Height="60"/>
+                        <RowDefinition Height="60"/>
+                        <RowDefinition Height="60"/>
+                        <RowDefinition Height="60"/>
+                        <RowDefinition Height="60"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="60"/>
+                        <RowDefinition Height="60"/>
+                        <RowDefinition Height="60"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="55*"/>
+                        <ColumnDefinition Width="55*"/>
+                        <ColumnDefinition Width="54"/>
+                        <ColumnDefinition Width="55*"/>
+                        <ColumnDefinition Width="55*"/>
+                        <ColumnDefinition Width="55*"/>
+                        <ColumnDefinition Width="55*"/>
+                        <ColumnDefinition Width="55*"/>
+                        <ColumnDefinition Width="55*"/>
+                        <ColumnDefinition Width="54*"/>
+                        <ColumnDefinition Width="55*"/>
+                        <ColumnDefinition Width="55*"/>
+                        <ColumnDefinition Width="55*"/>
+                        <ColumnDefinition Width="55*"/>
+                        <ColumnDefinition Width="55*"/>
+                        <ColumnDefinition Width="55*"/>
+                        <ColumnDefinition Width="55*"/>
+                        <ColumnDefinition Width="55*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <!-- ALL LED Colors-->
+                    <Button Content="" Margin="5" Background="White" IsCancel="True" Click="Color_Click" Tag="Led,#FFFFFF" VerticalContentAlignment="Stretch" Grid.Column="1"/>
+                    <Button Content="" Margin="5" Background="Red" IsCancel="True" Click="Color_Click" Tag="Led,#FF0000" VerticalContentAlignment="Stretch" Grid.Column="2"/>
+                    <Button Content="" Margin="5" Background="Orange" IsCancel="True" Click="Color_Click" Tag="Led,#FF7F00" VerticalContentAlignment="Stretch" Grid.Column="3"/>
+                    <Button Content="" Margin="5" Background="Yellow" IsCancel="True" Click="Color_Click" Tag="Led,#FFFF00" VerticalContentAlignment="Stretch" Grid.Column="4"/>
+                    <Button Content="" Margin="5" Background="#FF7FFF00" IsCancel="True" Click="Color_Click" Tag="Led,#7FFF00" VerticalContentAlignment="Stretch" Grid.Column="5"/>
+                    <Button Content="" Margin="5" Background="Lime" IsCancel="True" Click="Color_Click" Tag="Led,#00FF00" VerticalContentAlignment="Stretch" Grid.Column="6"/>
+                    <Button Content="" Margin="5" Background="SpringGreen" IsCancel="True" Click="Color_Click" Tag="Led,#00FF7F" VerticalContentAlignment="Stretch" Grid.Column="7"/>
+                    <Button Content="" Margin="5" Background="Aqua" IsCancel="True" Click="Color_Click" Tag="Led,#00FFFF" VerticalContentAlignment="Stretch" Grid.Column="8"/>
+                    <Button Content="" Margin="5" Background="#FF007FFF" IsCancel="True" Click="Color_Click" Tag="Led,#007FFF" VerticalContentAlignment="Stretch" Grid.Column="9"/>
+                    <Button Content="" Margin="5" Background="Blue" IsCancel="True" Click="Color_Click" Tag="Led,#0000FF" VerticalContentAlignment="Stretch" Grid.Column="10"/>
+                    <Button Content="" Margin="5" Background="#FF7F00FF" IsCancel="True" Click="Color_Click" Tag="Led,#7F00FF" VerticalContentAlignment="Stretch" Grid.Column="11"/>
+                    <Button Content="" Margin="5" Background="Fuchsia" IsCancel="True" Click="Color_Click" Tag="Led,#FF00FF" VerticalContentAlignment="Stretch" Grid.Column="12"/>
+                    <Button Content="" Margin="5" Background="#FFFF007F" IsCancel="True" Click="Color_Click" Tag="Led,#FF007F" VerticalContentAlignment="Stretch" Grid.Column="13"/>
+                    <Label Content="ALL LED" Height="27" Margin="0,16" Foreground="White" HorizontalContentAlignment="Right" VerticalContentAlignment="Stretch"/>
+
+                    <!-- BACK LED Colors-->
+                    <Button Content="" Margin="5" Background="White" IsCancel="True" Click="Color_Click" Tag="Back,#FFFFFF" VerticalContentAlignment="Stretch" Grid.Column="1" Grid.Row="1"/>
+                    <Button Content="" Margin="5" Background="Red" IsCancel="True" Click="Color_Click" Tag="Back,#FF0000" VerticalContentAlignment="Stretch" Grid.Column="2" Grid.Row="1"/>
+                    <Button Content="" Margin="5" Background="Orange" IsCancel="True" Click="Color_Click" Tag="Back,#FF7F00" VerticalContentAlignment="Stretch" Grid.Column="3" Grid.Row="1"/>
+                    <Button Content="" Margin="5" Background="Yellow" IsCancel="True" Click="Color_Click" Tag="Back,#FFFF00" VerticalContentAlignment="Stretch" Grid.Column="4" Grid.Row="1"/>
+                    <Button Content="" Margin="5" Background="#FF7FFF00" IsCancel="True" Click="Color_Click" Tag="Back,#7FFF00" VerticalContentAlignment="Stretch" Grid.Column="5" Grid.Row="1"/>
+                    <Button Content="" Margin="5" Background="Lime" IsCancel="True" Click="Color_Click" Tag="Back,#00FF00" VerticalContentAlignment="Stretch" Grid.Column="6" Grid.Row="1"/>
+                    <Button Content="" Margin="5" Background="SpringGreen" IsCancel="True" Click="Color_Click" Tag="Back,#00FF7F" VerticalContentAlignment="Stretch" Grid.Column="7" Grid.Row="1"/>
+                    <Button Content="" Margin="5" Background="Aqua" IsCancel="True" Click="Color_Click" Tag="Back,#00FFFF" VerticalContentAlignment="Stretch" Grid.Column="8" Grid.Row="1"/>
+                    <Button Content="" Margin="5" Background="#FF007FFF" IsCancel="True" Click="Color_Click" Tag="Back,#0007FF" VerticalContentAlignment="Stretch" Grid.Column="9" Grid.Row="1"/>
+                    <Button Content="" Margin="5" Background="Blue" IsCancel="True" Click="Color_Click" Tag="Back,#0000FF" VerticalContentAlignment="Stretch" Grid.Column="10" Grid.Row="1"/>
+                    <Button Content="" Margin="5" Background="#FF7F00FF" IsCancel="True" Click="Color_Click" Tag="Back,#7F00FF" VerticalContentAlignment="Stretch" Grid.Column="11" Grid.Row="1"/>
+                    <Button Content="" Margin="5" Background="Fuchsia" IsCancel="True" Click="Color_Click" Tag="Back,#FF00FF" VerticalContentAlignment="Stretch" Grid.Column="12" Grid.Row="1"/>
+                    <Button Content="" Margin="5" Background="#FFFF007F" IsCancel="True" Click="Color_Click" Tag="Back,#FF007F" VerticalContentAlignment="Stretch" Grid.Column="13" Grid.Row="1"/>
+                    <Label Content="BACK" Height="27" Margin="0,17" Foreground="White" HorizontalContentAlignment="Right" VerticalContentAlignment="Stretch" Grid.Row="1"/>
+
+                    <!-- SIDE LED Colors-->
+                    <Button Content="" Margin="5" Background="White" IsCancel="True" Click="Color_Click" Tag="Side,#FFFFFF" VerticalContentAlignment="Stretch" Grid.Column="1" Grid.Row="2"/>
+                    <Button Content="" Margin="5" Background="Red" IsCancel="True" Click="Color_Click" Tag="Side,#FF0000" VerticalContentAlignment="Stretch" Grid.Column="2" Grid.Row="2"/>
+                    <Button Content="" Margin="5" Background="Orange" IsCancel="True" Click="Color_Click" Tag="Side,#FF7F00" VerticalContentAlignment="Stretch" Grid.Column="3" Grid.Row="2"/>
+                    <Button Content="" Margin="5" Background="Yellow" IsCancel="True" Click="Color_Click" Tag="Side,#FFFF00" VerticalContentAlignment="Stretch" Grid.Column="4" Grid.Row="2"/>
+                    <Button Content="" Margin="5" Background="#FF7FFF00" IsCancel="True" Click="Color_Click" Tag="Side,#7FFF00" VerticalContentAlignment="Stretch" Grid.Column="5" Grid.Row="2"/>
+                    <Button Content="" Margin="5" Background="Lime" IsCancel="True" Click="Color_Click" Tag="Side,#00FF00" VerticalContentAlignment="Stretch" Grid.Column="6" Grid.Row="2"/>
+                    <Button Content="" Margin="5" Background="SpringGreen" IsCancel="True" Click="Color_Click" Tag="Side,#00FF7F" VerticalContentAlignment="Stretch" Grid.Column="7" Grid.Row="2"/>
+                    <Button Content="" Margin="5" Background="Aqua" IsCancel="True" Click="Color_Click" Tag="Side,#00FFFF" VerticalContentAlignment="Stretch" Grid.Column="8" Grid.Row="2"/>
+                    <Button Content="" Margin="5" Background="#FF007FFF" IsCancel="True" Click="Color_Click" Tag="Side,#0007FF" VerticalContentAlignment="Stretch" Grid.Column="9" Grid.Row="2"/>
+                    <Button Content="" Margin="5" Background="Blue" IsCancel="True" Click="Color_Click" Tag="Side,#0000FF" VerticalContentAlignment="Stretch" Grid.Column="10" Grid.Row="2"/>
+                    <Button Content="" Margin="5" Background="#FF7F00FF" IsCancel="True" Click="Color_Click" Tag="Side,#7F00FF" VerticalContentAlignment="Stretch" Grid.Column="11" Grid.Row="2"/>
+                    <Button Content="" Margin="5" Background="Fuchsia" IsCancel="True" Click="Color_Click" Tag="Side,#FF00FF" VerticalContentAlignment="Stretch" Grid.Column="12" Grid.Row="2"/>
+                    <Button Content="" Margin="5" Background="#FFFF007F" IsCancel="True" Click="Color_Click" Tag="Side,#FF007F" VerticalContentAlignment="Stretch" Grid.Column="13" Grid.Row="2"/>
+                    <Label Content="SIDE" Height="27" Margin="0,17" Foreground="White" HorizontalContentAlignment="Right" VerticalContentAlignment="Stretch" Grid.Row="2"/>
+
+                    <!-- Front Intensity -->
+                    <Button Content="" Margin="5" Background="White" IsCancel="True" Click="Intensity_Click" Tag="Front,#ffffff" VerticalContentAlignment="Stretch" Grid.Column="1" Grid.Row="3"/>
+                    <Button Content="" Margin="5" Background="#E5FFFFFF" IsCancel="True" Click="Intensity_Click" Tag="Front,#e6e6e6" VerticalContentAlignment="Stretch" Grid.Column="2" Grid.Row="3"/>
+                    <Button Content="" Margin="5" Background="#CCFFFFFF" IsCancel="True" Click="Intensity_Click" Tag="Front,#cccccc" VerticalContentAlignment="Stretch" Grid.Column="3" Grid.Row="3"/>
+                    <Button Content="" Margin="5" Background="#B2FFFFFF" IsCancel="True" Click="Intensity_Click" Tag="Front,#b3b3b3" VerticalContentAlignment="Stretch" Grid.Column="4" Grid.Row="3"/>
+                    <Button Content="" Margin="5" Background="#99FFFFFF" IsCancel="True" Click="Intensity_Click" Tag="Front,#999999" VerticalContentAlignment="Stretch" Grid.Column="5" Grid.Row="3"/>
+                    <Button Content="" Margin="5" Background="#7FFFFFFF" IsCancel="True" Click="Intensity_Click" Tag="Front,#808080" VerticalContentAlignment="Stretch" Grid.Column="6" Grid.Row="3"/>
+                    <Button Content="" Margin="5" Background="#66FFFFFF" IsCancel="True" Click="Intensity_Click" Tag="Front,#666666" VerticalContentAlignment="Stretch" Grid.Column="7" Grid.Row="3"/>
+                    <Button Content="" Margin="5" Background="#4CFFFFFF" IsCancel="True" Click="Intensity_Click" Tag="Front,#4d4d4d" VerticalContentAlignment="Stretch" Grid.Column="8" Grid.Row="3"/>
+                    <Button Content="" Margin="5" Background="#33FFFFFF" IsCancel="True" Click="Intensity_Click" Tag="Front,#333333" VerticalContentAlignment="Stretch" Grid.Column="9" Grid.Row="3"/>
+                    <Button Content="" Margin="5" Background="#19FFFFFF" IsCancel="True" Click="Intensity_Click" Tag="Front,#1a1a1a" VerticalContentAlignment="Stretch" Grid.Column="10" Grid.Row="3"/>
+                    <Button Content="" Margin="5" Background="Black" IsCancel="True" Click="Intensity_Click" Tag="Front,#000000" VerticalContentAlignment="Stretch" Grid.Column="11" Grid.Row="3"/>
+                    <Label Content="FRONT" Height="27" Margin="0,17" Foreground="White" HorizontalContentAlignment="Right" VerticalContentAlignment="Stretch" Grid.Row="3"/>
+
+                    <!-- Main Fade Dialog-->
+                    <Rectangle Grid.ColumnSpan="4" Grid.Column="14" Margin="10,0,10,10" Grid.RowSpan="4" Stroke="#FF785225" RadiusX="5" RadiusY="5" StrokeThickness="2"/>
+                    <Label Content="Main Fade Speed (ms)" Height="27" Margin="42,16" Foreground="White" HorizontalContentAlignment="Center" VerticalContentAlignment="Stretch" Grid.Column="14" Grid.ColumnSpan="4" HorizontalAlignment="Center" FontWeight="Bold"/>
+                    <TextBox Grid.ColumnSpan="4" Grid.Column="14" Margin="20,10,20,20" Grid.Row="1" TextWrapping="Wrap" Text="1000" VerticalContentAlignment="Center" Background="#FF282828" Foreground="White" HorizontalContentAlignment="Center"/>
+                    <Button Content="0 ms" Grid.Column="14" Margin="20,5,10,25" Grid.Row="2" Grid.ColumnSpan="2" VerticalContentAlignment="Center" Background="#FF424242" Foreground="White"/>
+                    <Button Content="300 ms" Grid.Column="16" Margin="10,5,20,25" Grid.Row="2" Grid.ColumnSpan="2" VerticalContentAlignment="Center" Background="#FF424242" Foreground="White"/>
+                    <Button Content="1000 ms" Grid.Column="14" Margin="20,5,10,25" Grid.Row="3" Grid.ColumnSpan="2" VerticalContentAlignment="Center" Background="#FF424242" Foreground="White"/>
+                    <Button Content="5000 ms" Grid.Column="16" Margin="10,5,20,25" Grid.Row="3" Grid.ColumnSpan="2" VerticalContentAlignment="Center" Background="#FF424242" Foreground="White"/>
+
+                    <!-- Effect Color -->
+                    <Label Content="EFFECT" Margin="0" Foreground="White" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" Grid.Row="5"/>
+                    <Button Content="" Margin="5" Background="White" IsCancel="True" Click="Effect_Color_Click" Tag="White" VerticalContentAlignment="Stretch" Grid.Column="1" Grid.Row="5" />
+                    <Button Content="" Margin="5" Background="Red" IsCancel="True" Click="Effect_Color_Click" Tag="Red" VerticalContentAlignment="Stretch" Grid.Column="2" Grid.Row="5" />
+                    <Button Content="" Margin="5" Background="Orange" IsCancel="True" Click="Effect_Color_Click" Tag="Orange" VerticalContentAlignment="Stretch" Grid.Column="3" Grid.Row="5" />
+                    <Button Content="" Margin="5" Background="Yellow" IsCancel="True" Click="Effect_Color_Click" Tag="Yellow" VerticalContentAlignment="Stretch" Grid.Column="4" Grid.Row="5" />
+                    <Button Content="" Margin="5" Background="#FF7FFF00" IsCancel="True" Click="Effect_Color_Click" Tag="Chartreuse" VerticalContentAlignment="Stretch" Grid.Column="5" Grid.Row="5" />
+                    <Button Content="" Margin="5" Background="Lime" IsCancel="True" Click="Effect_Color_Click" Tag="Lime" VerticalContentAlignment="Stretch" Grid.Column="6" Grid.Row="5" />
+                    <Button Content="" Margin="5" Background="SpringGreen" IsCancel="True" Click="Effect_Color_Click" Tag="SpringGreen" VerticalContentAlignment="Stretch" Grid.Column="7" Grid.Row="5" />
+                    <Button Content="" Margin="5" Background="Aqua" IsCancel="True" Click="Effect_Color_Click" Tag="Aqua" VerticalContentAlignment="Stretch" Grid.Column="8" Grid.Row="5" />
+                    <Button Content="" Margin="5" Background="#FF007FFF" IsCancel="True" Click="Effect_Color_Click" Tag="Azure" VerticalContentAlignment="Stretch" Grid.Column="9" Grid.Row="5" />
+                    <Button Content="" Margin="5" Background="Blue" IsCancel="True" Click="Effect_Color_Click" Tag="Blue" VerticalContentAlignment="Stretch" Grid.Column="10" Grid.Row="5" />
+                    <Button Content="" Margin="5" Background="#FF7F00FF" IsCancel="True" Click="Effect_Color_Click" Tag="Violet" VerticalContentAlignment="Stretch" Grid.Column="11" Grid.Row="5" />
+                    <Button Content="" Margin="5" Background="Fuchsia" IsCancel="True" Click="Effect_Color_Click" Tag="Fuchsia" VerticalContentAlignment="Stretch" Grid.Column="12" Grid.Row="5" />
+                    <Button Content="" Margin="5" Background="#FFFF007F" IsCancel="True" Click="Effect_Color_Click" Tag="Rose" VerticalContentAlignment="Stretch" Grid.Column="13" Grid.Row="5" />
+
+                    <!-- Effect Fade Speed -->
+                    <Rectangle Grid.ColumnSpan="4" Grid.Column="6" Margin="10,10,10,0" Grid.RowSpan="4" Stroke="#FF785225" RadiusX="5" RadiusY="5" StrokeThickness="2" Grid.Row="6"/>
+                    <TextBox Grid.ColumnSpan="4" Grid.Column="6" Margin="20,10,20,20" Grid.Row="7" TextWrapping="Wrap" Text="1000" VerticalContentAlignment="Center" Background="#FF282828" Foreground="White" HorizontalContentAlignment="Center"/>
+                    <Button Content="0 ms" Grid.Column="6" Margin="20,9,10,21" Grid.Row="9" Grid.ColumnSpan="2" VerticalContentAlignment="Center" Background="#FF424242" Foreground="White"/>
+                    <Button Content="300 ms" Grid.Column="8" Margin="10,9,19,21" Grid.Row="9" Grid.ColumnSpan="2" VerticalContentAlignment="Center" Background="#FF424242" Foreground="White"/>
+
+                    <!-- Effect Appearance -->
+                    <Rectangle Grid.ColumnSpan="4" Grid.Column="10" Margin="10,10,10,0" Grid.RowSpan="4" Stroke="#FF785225" RadiusX="5" RadiusY="5" StrokeThickness="2" Grid.Row="6"/>
+                    <Button Content="On / Off" Grid.Column="10" Margin="20,10,10,20" Grid.Row="7" Grid.ColumnSpan="2" VerticalContentAlignment="Center" Background="#FF424242" Foreground="White" Tag="OnOff" Click="FXappearance_Click"/>
+                    <Button Content="Fade" Grid.Column="12" Margin="10,10,20,20" Grid.Row="7" Grid.ColumnSpan="2" VerticalContentAlignment="Center" Background="#FF424242" Foreground="White" Tag="Fade" Click="FXappearance_Click"/>
+                    <Label Content="On / Off treshold" Grid.Column="10" HorizontalAlignment="Left" Margin="20,0,0,0" Grid.Row="9" VerticalAlignment="Top" Width="106" Foreground="Gray" Grid.ColumnSpan="3"/>
+                    <Label x:Name="FXtreshold_display" Content="0.5" Grid.Column="12" HorizontalAlignment="Right" Margin="0,0,20,0" Grid.Row="9" VerticalAlignment="Top" Foreground="Gray" Grid.ColumnSpan="2" Width="60" HorizontalContentAlignment="Right"/>
+                    <Slider Grid.Column="10" Margin="20,22,20,0" Grid.Row="9" VerticalAlignment="Top" RenderTransformOrigin="0,0.222" Grid.ColumnSpan="4" Maximum="1" SmallChange="0.05" TickFrequency="0.25" TickPlacement="BottomRight" ValueChanged="FXtreshold_Change" Value="0.5" LargeChange="0.25"/>
+
+                    <!-- Effect Master -->
+                    <Rectangle Grid.ColumnSpan="2" Margin="10,10,10,0" Grid.RowSpan="6" Stroke="#FF785225" RadiusX="5" RadiusY="5" StrokeThickness="2" Grid.Row="6"/>
+                    <Slider x:Name="FXmaster" Margin="0,0,0,10" Grid.Row="7" Orientation="Vertical" Grid.RowSpan="5" HorizontalContentAlignment="Center" HorizontalAlignment="Center" Grid.ColumnSpan="2" ValueChanged="FXmaster_Change" Maximum="1" LargeChange="0.25" SmallChange="0.01" TickFrequency="0.25" TickPlacement="Both"/>
+                    <TextBlock Grid.ColumnSpan="2" HorizontalAlignment="Center" Margin="20,20,20,0" Grid.Row="6" TextWrapping="Wrap" Text="EFFECT MASTER" VerticalAlignment="Top" Foreground="White" FontWeight="Bold"/>
+                    <Rectangle Grid.ColumnSpan="4" Margin="10,10,10,0" Grid.RowSpan="6" Stroke="#FF785225" RadiusX="5" RadiusY="5" StrokeThickness="2" Grid.Row="6" Grid.Column="2"/>
+                    <TextBlock Grid.ColumnSpan="4" HorizontalAlignment="Center" Margin="32,20,35,0" Grid.Row="6" TextWrapping="Wrap" VerticalAlignment="Top" Foreground="White" FontWeight="Bold" Grid.Column="2" Grid.RowSpan="2"><Run Text="EFFECT SELECT"/><LineBreak/><Run/></TextBlock>
+
+                    <!-- Effect Select -->
+                    <StackPanel Grid.ColumnSpan="4" Grid.Column="2" Margin="20,10" Grid.Row="7" Grid.RowSpan="5">
+                        <RadioButton Tag="0" Content="Off" Foreground="White" FontSize="20" VerticalContentAlignment="Center" Margin="0,0,0,10" GroupName="EffectSelect" IsChecked="True" Click="FXselect_Click"/>
+                        <RadioButton Tag="1" Content="Odd/Even" Foreground="White" FontSize="20" VerticalContentAlignment="Center" Margin="0,0,0,10" GroupName="EffectSelect" Click="FXselect_Click"/>
+                        <RadioButton Tag="2" Content="SineWave" Foreground="White" FontSize="20" VerticalContentAlignment="Center" Margin="0,0,0,10" GroupName="EffectSelect" Click="FXselect_Click"/>
+                        <RadioButton Tag="3" Content="In/Out" Foreground="White" FontSize="20" VerticalContentAlignment="Center" Margin="0,0,0,10" GroupName="EffectSelect" Click="FXselect_Click"/>
+                    </StackPanel>
+
+                    <!-- Fixture preview -->
+                    <StackPanel x:Name="FIXTURE_preview" Grid.ColumnSpan="12" Grid.Column="6" Margin="0,0,10,0" Grid.Row="11" Orientation="Horizontal"/>
+                    <TextBlock Grid.ColumnSpan="4" Margin="20,20,20,0" Grid.Row="6" TextWrapping="Wrap" VerticalAlignment="Top" Foreground="White" FontWeight="Bold" Grid.Column="6" HorizontalAlignment="Center"><Run Text="EFFECT SPEED (ms)"/><LineBreak/><Run/><LineBreak/><Run/></TextBlock>
+                    <TextBlock Grid.ColumnSpan="4" Margin="20,20,20,0" Grid.Row="6" TextWrapping="Wrap" VerticalAlignment="Top" Foreground="White" FontWeight="Bold" Grid.Column="10" HorizontalAlignment="Center" Grid.RowSpan="2"><Run Text="EFFECT APPEARANCE"/><LineBreak/><Run/><LineBreak/><Run/></TextBlock>
+                    
+                    
+                    <!-- Main Master -->
+                    <Rectangle Grid.ColumnSpan="4" Margin="10,10,10,0" Grid.RowSpan="6" Stroke="#FF785225" RadiusX="5" RadiusY="5" StrokeThickness="2" Grid.Row="4" Grid.Column="14"/>
+                    <Slider x:Name="FXmaster_Copy" Margin="20,0,20,10" Grid.Row="5" Orientation="Vertical" Grid.RowSpan="5" HorizontalContentAlignment="Center" HorizontalAlignment="Center" ValueChanged="MAINmaster_Change" Maximum="1" LargeChange="0.25" SmallChange="0.01" TickFrequency="0.25" TickPlacement="Both" Grid.Column="14" Grid.ColumnSpan="4" Value="1"/>
+                    <TextBlock Grid.ColumnSpan="2" HorizontalAlignment="Center" Margin="10,27,9,0" Grid.Row="4" TextWrapping="Wrap" Text="MAIN MASTER" VerticalAlignment="Top" Foreground="White" FontWeight="Bold" Grid.Column="15"/>
+
+
+
+
+
+                </Grid>
+            </TabItem>
+            <TabItem Header="Fixture Editor" GotFocus="FixtureEditor_updateUI" BorderBrush="{x:Null}" Background="#FF181818" Foreground="#FF747474" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch">
+                <Grid Background="#FF191919" Margin="0,10,0,0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="25*"/>
+                        <ColumnDefinition Width="514*"/>
+                    </Grid.ColumnDefinitions>
+                    <DataGrid x:Name="FIXTURE_list" HorizontalAlignment="Left" Margin="10,10,0,0" Width="575" Grid.ColumnSpan="2"/>
+                    <Grid Grid.Column="1" Margin="544,10,0,0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+                        <Label Content="Add Fixture(s)" Margin="0" VerticalAlignment="Center" HorizontalContentAlignment="Stretch" HorizontalAlignment="Center" Foreground="White" FontWeight="Bold" Grid.ColumnSpan="2"/>
+                        <Label Content="Fixture Name" Margin="0,0,10,0" VerticalAlignment="Center" HorizontalContentAlignment="Stretch" HorizontalAlignment="Right" Foreground="White" Grid.Row="1"/>
+                        <Label Content="# of channels" Margin="0,0,10,0" VerticalAlignment="Center" HorizontalContentAlignment="Stretch" HorizontalAlignment="Right" Foreground="White" Grid.Row="2"/>
+                        <Label Content="Start channel" Margin="0,0,10,0" VerticalAlignment="Center" HorizontalContentAlignment="Stretch" HorizontalAlignment="Right" Foreground="White" Grid.Row="3"/>
+                        <Label Content="Groups (comma separated)" Margin="0,0,10,0" VerticalAlignment="Center" HorizontalContentAlignment="Stretch" HorizontalAlignment="Right" Foreground="White" Grid.Row="4"/>
+                        <Label Content="Repeat n times" Margin="0,0,10,0" VerticalAlignment="Center" HorizontalContentAlignment="Stretch" HorizontalAlignment="Right" Foreground="White" Grid.Row="5"/>
+                        <TextBox x:Name="NewFixtureName" Grid.Column="1" Margin="10,0" VerticalAlignment="Center" Foreground="White" Grid.Row="1" Text="Generic Par64" Background="#FF424242" Padding="5"/>
+                        <TextBox x:Name="NewFixtureNChannels" Grid.Column="1" Margin="10,0" VerticalAlignment="Center" Foreground="White" Grid.Row="2" Text="8" Background="#FF424242" Padding="5"/>
+                        <TextBox x:Name="NewFixtureStart" Grid.Column="1" Margin="10,0" VerticalAlignment="Center" Foreground="White" Grid.Row="3" Text="1" Background="#FF424242" Padding="5"/>
+                        <TextBox x:Name="NewFixtureGroups" Grid.Column="1" Margin="10,0" VerticalAlignment="Center" Foreground="White" Grid.Row="4" Text="All,Led" Background="#FF424242" Padding="5"/>
+                        <TextBox x:Name="NewFixtureRepeat" Grid.Column="1" Margin="10,0" VerticalAlignment="Center" Foreground="White" Grid.Row="5" Text="1" Background="#FF424242" Padding="5"/>
+                        <Button x:Name="NewFixtureCreate" Grid.ColumnSpan="2" Content="💡 Create" HorizontalAlignment="Center" Margin="0,-1,0,0" Grid.Row="6" VerticalAlignment="Center" Width="75" Background="#FF464646" Foreground="White" Padding="10" Click="FIXcreate_Click"/>
+
+
+                    </Grid>
+                </Grid>
+            </TabItem>
+        </TabControl>
+
+        <Button x:Name="Settings_Load" Content="" HorizontalAlignment="Left" Margin="919,10,0,0" VerticalAlignment="Top" Width="40" Height="40" BorderBrush="{x:Null}" ToolTip="SAVE" Click="SETsave_Click">
+            <Button.Background>
+                <ImageBrush ImageSource="images/load.png"/>
+            </Button.Background>
+        </Button>
+        <Button x:Name="Settings_Save" Content="" HorizontalAlignment="Left" Margin="964,10,0,0" VerticalAlignment="Top" Width="40" Height="40" BorderBrush="{x:Null}" ToolTip="LOAD" Click="SETload_Click">
+            <Button.Background>
+                <ImageBrush ImageSource="./images/save.png"/>
+            </Button.Background>
+        </Button>
+        <Label x:Name="FPSmeter" Content="" HorizontalAlignment="Left" Margin="845,18,0,0" VerticalAlignment="Top" Width="69" Background="{x:Null}" Foreground="#FF3B8534"/>
+    </Grid>
+</Window>
